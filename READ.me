@@ -1,0 +1,31 @@
+### notas del paso a paso
+
+utilice una imagen base de php para correr una web simple como ejemplo
+
+La version utilizada fue php:7.2-apache
+
+
+tuve que descargarme aparte del "pacman -S docker" tambien el "pamac install docker-buildx" (por usar manjaro) ya que me daba error
+deprecated al intentar correr con un docker build
+
+
+creacion de volumen.
+    corro docker volume create index -- para crear el volumen que voy a utilizar
+    luego con docker volume inspect index -- verifico la ubicacion fisica del volumen 
+    copio el index.html de mi pagina inicial a la ruta indicada en el paso anterior
+    
+
+
+el comando que utilice es
+para buildear: docker build -t ejercicio8
+#utilizo el parametro -t para asignarle el nombre "ejercicio8" al contenedor para su facilidad
+#utilizo la version 7.2-apache para no tener problemas de compatibilidad en caso de que se actualizara la version latest
+#expongo el puerto 80 para poder acceder a la web que se genero
+
+
+para correr: docker run -p 80:80 -v /src/:var/www/html ejercicio8
+#utilizo -p 80:80 para forwardear el puerto 80 de mi equipo al 80 del contenedor
+#utilizo -v /src/:var/www/html para generar un volumen en /src/ que apunte a var/www/html y de esa manera si realizo algun cambio en index.html no tengo que volver a buildear el contenedor.
+#como indique en el paso anterior al asignarle el tag "ejercicio8" puedo llamarlo de esa manera. lo cual es mas comodo
+
+

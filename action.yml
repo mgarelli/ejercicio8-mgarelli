@@ -1,0 +1,7 @@
+name: 'ejercicio8'
+description: 'ejercicio 8 curso DevOps Maicol Garelli'
+
+runs:
+  using: 'docker'
+  image: 'dockerfile'
+  
